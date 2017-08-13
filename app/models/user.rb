@@ -21,7 +21,7 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
    has_many :followers, through: :passive_relationships, source: :follower
-
+   has_many :services, dependent: :destroy
 	
 	 # Returns the hash digest of the given string.
   def User.digest(string)
