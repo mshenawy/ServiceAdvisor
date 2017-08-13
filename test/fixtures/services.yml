@@ -4,10 +4,8 @@ one:
   title: MyString
   description: MyText
   rating: MyString
-  user_id: 1
 
 two:
   title: MyString
   description: MyText
   rating: MyString
-  user_id: 1

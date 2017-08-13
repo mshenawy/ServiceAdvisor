@@ -4,7 +4,6 @@ class CreateServices < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :description
       t.string :rating
-      t.integer :user_id
 
       t.timestamps
     end
