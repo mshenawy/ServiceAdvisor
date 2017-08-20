@@ -18,11 +18,17 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+  resources :services do
+    collection do
+      get 'search'
+    end
+  end
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'pages#welcome', as: 'home'
   root :to => "pages#welcome"
+  root 'services#index'
 
   # example of regular Route.
   get 'about' => 'pages#about', as: 'about'
