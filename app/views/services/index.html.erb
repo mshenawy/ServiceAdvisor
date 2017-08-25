@@ -1,9 +1,39 @@
 <div class="row">
+  
+  
   <% @services.each do |service| %>
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <%= link_to (image_tag service.image.url(:original), class: 'image'), service %>
-      </div>
-    </div>
+    <div class="table-responsive">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th width="10%">Title:</th>
+							<td><%= service.title %></td>
+						</tr>
+						<tr>
+							<th>Description:</th>
+  							<td><%= service.description %></td>
+						</tr>
+
+					</tbody>
+				</table>
+	</div>
+				<div class="card" style="width: 20rem;" >
+					<%= image_tag service.image.url(:original) %>				
+				</div>
+				<div class="star-rating" data-score=<%=getServiceAvgReviews(service) %>></div>
+				<em><%= "#{getReviewsLength(service)} reviews #{getServiceAvgReviews(service)}"  %> </em>
+				 
   <% end %>
+
 </div>
+
+<script >
+$('.star-rating').raty({
+  path: '/assets/',
+  round : { down: .26, full: .6, up: .76 },
+  readOnly:true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>

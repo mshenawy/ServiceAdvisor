@@ -4,6 +4,9 @@
 
 body {
   // /* padding-top: 60px; */
+  //background:#AA4847;
+  background:beige;
+
 }
 
 section {
@@ -66,23 +69,6 @@ p {
 }
 
 /* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-}
-
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
 
 $gray-medium-light: #eaeaea;
 
@@ -288,4 +274,17 @@ span.picture {
   padding: 0;
 }
 
-/* ?* */
+/* service reviews */
+
+.review_title {
+ margin:0 0 20px 0;  
+}
+.reviews {
+  padding: 15px 0;
+  border-bottom: 1px solid #EAEAEA;
+    .star-rating{
+      padding-bottom: 8px;
+    }
+
+}
+

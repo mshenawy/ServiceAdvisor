@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :services
-  resources :services
+  
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -20,15 +20,16 @@ Rails.application.routes.draw do
   end
   resources :services do
     collection do
-      get 'search'
+      get :search
     end
+     resources :reviews
   end
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'pages#welcome', as: 'home'
   root :to => "pages#welcome"
-  root 'services#index'
+  # root 'services#index'
 
   # example of regular Route.
   get 'about' => 'pages#about', as: 'about'

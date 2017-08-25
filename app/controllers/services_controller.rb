@@ -1,19 +1,30 @@
 class ServicesController < ApplicationController
-  before_action :set_service, only: [:show, :edit, :update, :destroy]
+  # before_action :set_service, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
-  # GET /services
-  # GET /services.json
+  
   def index
-    @services = Service.all
+     search = params[:search].present? ? params[:search] : nil
+    @services = if search
+       # Service.where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
+      # Service.search(search, where: { year: { gt: 2000 } })
+      Service.search(search)
+    else
+     @services= Service.all
+    end
   end
 
-  # GET /services/1
-  # GET /services/1.json
   def show
+    @reviews = Review.where(service_id: @service.id).order("created_at DESC")
+    if @reviews.blank?
+        @avg_review = 0
+      else
+        @avg_review = @reviews.average(:rating).round(2)
+    end
   end
 
+  
   # GET /services/new
   def new
     @service = current_user.services.build
@@ -77,5 +88,8 @@ class ServicesController < ApplicationController
     def correct_user
       @service = current_user.services.find_by(id: params[:id])
       redirect_to root_url if @service.nil?
+    end
+
+    def caluclateReviews
     end
 end

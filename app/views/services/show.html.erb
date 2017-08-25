@@ -1,20 +1,65 @@
-<%= image_tag @service.image.url(:original) %>
-<%= image_tag @service.image.url(:medium) %>
+<div class="panel panel-default" style="background: white;margin-top: 15px;">	
+	<div class="panel">
+		<div class="row">
+			  <div class="col-md-4">
+				<div class="card" style="width: 20rem;" >
+					<%= image_tag @service.image.url(:original) %>				
+				</div>
+				<div class="star-rating" data-score=<%=@avg_review %>></div>
+				<em><%= "#{@reviews.length} reviews #{@avg_review}"  %> </em>
+				<div class="table-responsive">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td><strong>Title:</strong></td>
+							<td><%= @service.title %></td>
+						</tr>
+						<tr>
+							<td></td><strong>Description:</strong></tr>
+  							<td></td><%= @service.description %></tr>
+						</tr>
+						<tr>
+							<td><strong>Rating:</strong></td>
+							<td><%= @service.rating %></td>
+						</tr>
+					</tbody>
+				</table>
+				<%= link_to "Write a Review" , new_service_review_path(@service) %> 
+				</div>
+			</div>
+			<div class="col-md-7 col-offset-1">
+				<h1 class="review_title"> <%= @service.title %> </h1>
+				<p> <%= @service.description %> </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @service.title %>
-</p>
+				<% if @reviews.blank? %>
+					<h3>No reviews  just yet, would you like to add the first!</h3>
+					<%= link_to "Write Review" , new_service_review_path(@service),class: "btn btn-danger" %> 
+				<% else %>
+					<% @reviews.each do |review| %>
+						<div class="reviews">
+							<p></p>
+							<div class="star-rating" data-score=<%=review.rating %>>
+							</div>
+							<p><%=review.comment %></p>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @service.description %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @service.rating %>
-</p>
 
 <%= link_to 'Edit', edit_service_path(@service) %> |
 <%= link_to 'Back', services_path %>
+
+<script >
+$('.star-rating').raty({
+  path: '/assets/',
+  round : { down: .26, full: .6, up: .76 },
+  readOnly:true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>
