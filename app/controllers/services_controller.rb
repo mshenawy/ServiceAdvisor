@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  # before_action :set_service, only: [:show, :edit, :update, :destroy]
+  before_action :set_service, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
@@ -24,7 +24,7 @@ class ServicesController < ApplicationController
     end
   end
 
-  
+
   # GET /services/new
   def new
     @service = current_user.services.build
