@@ -1,8 +1,16 @@
-<div class="row">
+<div class="list-group">
   
   
   <% @services.each do |service| %>
+  	<div class="list-group-item ">
     		<div class="table-responsive">
+    			<div class="card" style="width: 20rem;" >
+					<%= link_to image_tag(service.image.url(:original)),service_path(service.id)  %>	
+					<div class="star-rating" data-score=<%=getServiceAvgReviews(service) %>>
+				</div>
+				<em><%= "#{getReviewsLength(service)} reviews "  %> </em>
+
+				</div>
 				<table class="table">
 					<tbody>
 						<tr>
@@ -17,12 +25,9 @@
 					</tbody>
 				</table>
 			</div>
-				<div class="card" style="width: 20rem;" >
-					<%= link_to image_tag(service.image.url(:original)),service_path(service.id)  %>				
-				</div>
-				<div class="star-rating" data-score=<%=getServiceAvgReviews(service) %>></div>
-				<em><%= "#{getReviewsLength(service)} reviews #{getServiceAvgReviews(service)}"  %> </em>
-				 
+				
+				
+	</div>
   <% end %>
 
 </div>
