@@ -71,3 +71,6 @@ gem 'fog',                     '1.40.0'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem "paperclip", "~> 5.0.0"
 gem 'searchkick', '~> 1.1'
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'record_tag_helper', '~> 1.0'
+gem "font-awesome-rails"

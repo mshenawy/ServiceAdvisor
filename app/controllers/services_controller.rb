@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
   def index
      search = params[:search].present? ? params[:search] : nil
     @services = if search
-       # Service.where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
+      # Service.where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
       # Service.search(search, where: { year: { gt: 2000 } })
       Service.search(search)
     else
